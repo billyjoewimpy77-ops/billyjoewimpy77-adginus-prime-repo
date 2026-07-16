@@ -55,7 +55,19 @@ from datetime import datetime, timedelta
 from typing import Dict, List, Optional, Any, Callable
 
 # ================================================================
-# 0. EMBEDDING BRIDGE — real semantic search, with graceful fallback
+# 
+from fastapi import FastAPI
+app = FastAPI(title="ADGINUS PRIME NEXUS")
+
+@app.get("/")
+def home():
+    return {"status": "ADGINUS PRIME ONLINE", "version": "1.3.0"}
+
+@app.get("/health")
+def health():
+    return {"ok": True}
+ 
+
 # ================================================================
 def cosine_similarity(vec_a: List[float], vec_b: List[float]) -> float:
     """Plain-Python cosine similarity — no numpy dependency needed."""
