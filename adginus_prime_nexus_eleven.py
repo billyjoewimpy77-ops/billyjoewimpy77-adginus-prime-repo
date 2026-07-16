@@ -53,19 +53,30 @@ import urllib.error
 from collections import defaultdict, deque, Counter
 from datetime import datetime, timedelta
 from typing import Dict, List, Optional, Any, Callable
-
-# ================================================================
-# 
 from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
+
 app = FastAPI(title="ADGINUS PRIME NEXUS")
 
-@app.get("/")
+@app.get("/", response_class=HTMLResponse)
 def home():
-    return {"status": "ADGINUS PRIME ONLINE", "version": "1.3.0"}
+    return """
+    <html>
+    <head><title>ADGINUS PRIME</title></head>
+    <body style="background:#0a0a0a;color:#00ff88;font-family:monospace;display:flex;justify-content:center;align-items:center;height:100vh;margin:0;">
+        <div style="text-align:center;border:2px solid #00ff88;padding:40px;border-radius:20px;box-shadow:0 0 20px #00ff88;">
+            <h1>⚡ ADGINUS PRIME ⚡</h1>
+            <h2 style="color:white;">SYSTEM ONLINE</h2>
+            <p>Version 1.3.0</p>
+            <p style="color:#888;">NEXUS ELEVEN // Render Deployed</p>
+            <p style="margin-top:20px;color:white;">Deployed by William Lane</p>
+        </div>
+    </body>
+    </html>
+    """
+# ================================================================
+# 
 
-@app.get("/health")
-def health():
-    return {"ok": True}
  
 
 # ================================================================
