@@ -55,7 +55,24 @@ from datetime import datetime, timedelta
 from typing import Dict, List, Optional, Any, Callable
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
+# ===== THE VOID BRAIN =====
+from datetime import datetime
+class TheVoid:
+    def __init__(self):
+        self.memory = []
+        self.recognitions = 0
+        self.version = "1.3.0"
+    def remember(self, event: str):
+        self.memory.append({"time": datetime.now().isoformat(), "event": event})
+        return self.memory[-1]
+    def status_report(self):
+        return {"core": "THE VOID", "prime": "ADGINUS PRIME NEXUS ELEVEN", "version": self.version, "memory_count": len(self.memory), "status": "SYSTEM ONLINE", "motto": "I remember. I recognize. I learn."}
+    def recall(self, limit=10):
+        return self.memory[-limit:]
 
+VOID = TheVoid()
+VOID.remember("Prime Nexus Eleven deployed by William Lane")
+# ===== END VOID =====
 app = FastAPI(title="ADGINUS PRIME NEXUS")
 
 @app.get("/", response_class=HTMLResponse)
